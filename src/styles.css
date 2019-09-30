@@ -1,3 +1,4 @@
+/* Global styles */
 * {
   box-sizing: border-box;
 }
@@ -6,10 +7,15 @@ body {
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
+
+/* Page styles */
 #content {
   margin: 1.2em;
 }
-
 
 h1 {
   color: white;
@@ -19,6 +25,21 @@ h1 {
   width: 100%;
 }
 
+button {
+  background-color: white;
+  color: black;
+  border: 1px solid #eb4034;
+  padding: .6em 2em;
+  border-radius: 2em;
+  margin: .4em 0;
+}
+
+button:active {
+  transform: translate(0.1em, 0.1em);
+}
+
+
+/* Drop-down menu styles */
 #nav-menu.menu-container {
   display: block;
   width: max-content;
@@ -41,18 +62,8 @@ h1 {
   display: none;
 }
 
-button {
-  background-color: white;
-  color: black;
-  border: 1px solid #eb4034;
-  padding: .6em 2em;
-  border-radius: 2em;
-}
 
-button:active {
-  transform: translate(0.1em, 0.1em);
-}
-
+/* Mobile menu styles */
 @keyframes menuFrames {
   from {
     transform: translate(-100%, 0);
@@ -81,7 +92,7 @@ button:active {
   animation: menuFrames 200ms ease-in-out reverse;
 }
 
-#mobile-menu .close-button a {
+#mobile-menu .close-button * {
   float: right;
   color: white;
   text-decoration: none;
@@ -97,8 +108,4 @@ button:active {
   color: white;
   text-decoration: none;
   line-height: 1.6em;
-}
-
-.hidden {
-  display: none;
 }
