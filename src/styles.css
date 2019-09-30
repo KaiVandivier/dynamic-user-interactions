@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#content {
+  margin: 1.2em;
+}
+
+
+h1 {
+  color: white;
+  background-color: #eb4034;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+}
+
+#nav-menu.menu-container {
+  display: block;
+  width: max-content;
+}
+
+#nav-menu .menu-items {
+  border: 1px solid #eb4034;
+  border-radius: 1em;
+  padding: .6em 2em;
+  margin: .2em 0;
+  width: parent;
+  text-align: center;
+  line-height: 1.6em;
+  z-index: 10;
+  position: absolute;
+  background-color: white;
+}
+
+#nav-menu .menu-items.hidden {
+  display: none;
+}
+
+button {
+  background-color: white;
+  color: black;
+  border: 1px solid #eb4034;
+  padding: .6em 2em;
+  border-radius: 2em;
+}
+
+button:active {
+  transform: translate(0.1em, 0.1em);
+}
+
+@keyframes menuFrames {
+  from {
+    transform: translate(-100%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #eb4034;
+  padding: 1em;
+  color: white;
+  z-index: 101;
+}
+
+#mobile-menu.opening {
+  animation: menuFrames 200ms ease-in-out;
+}
+
+#mobile-menu.closing {
+  animation: menuFrames 200ms ease-in-out reverse;
+}
+
+#mobile-menu .close-button a {
+  float: right;
+  color: white;
+  text-decoration: none;
+  font-size: 1.4em;
+}
+
+#mobile-menu .title {
+  border-bottom: 1px solid white;
+  padding: 1em;
+}
+
+#mobile-menu .menu-item {
+  color: white;
+  text-decoration: none;
+  line-height: 1.6em;
+}
+
+.hidden {
+  display: none;
+}
