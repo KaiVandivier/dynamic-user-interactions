@@ -5,10 +5,34 @@
     <title>Dynamic User Interactions</title>
   </head>
   <body>
-    <div id="menu-container">
-      <div id="menu">
-        <div id="menu-items"></div>
-      </div>
+    <section id="header">
+      <h1>Sample Title</h1>
+    </section>
+    <section id="content">
+      <button id="mobile-menu-button">Mobile Site Menu</button><br>
+      <span id="nav-menu" class="menu-container">
+        <button class="menu-button">Drop-down Navigation Menu</button> <!-- Todo: title of item -->
+        <nav class="menu-items hidden">
+          <a href="#">Home</a><br>
+          <a href="#">About</a><br>
+          <a href="#">Contact</a><br>
+          <a href="#">Media</a><br>
+        </nav>
+      </span>
+      <p>Sample sample sample</p>
+      <p>Sample sample sample</p>
+    </section>
+    <div id="mobile-menu" class="">
+      <div class="close-button"><a href="#">&times;</a></div>
+      <section class="mobile-menu-title">
+        <h3 class="title">Site Menu</h3>
+      </section>
+      <section class="mobile-menu-items">
+        <a href="#" class="menu-item">Home</a><br>
+        <a href="#" class="menu-item">About</a><br>
+        <a href="#" class="menu-item">Contact</a><br>
+        <a href="#" class="menu-item">Media</a><br>
+      </section>
     </div>
   </body>
   <script src="./bundle.js"></script>
