@@ -46,10 +46,11 @@ mobileMenuCloseButton.addEventListener("click", function() {
 
 const carouselContainer = document.getElementById("image-carousel");
 const imageContainer = carouselContainer.querySelector(".image-container");
-// const image = imageContainer.querySelector("image");
 // const indexCircleContainer = carouselContainer.querySelector(".index-circle-container");
-// const previousButton = carouselContainer.querySelector("button.previous-button");
-// const nextButton = carouselContainer.querySelector("button.next-button");
+const previousButton = carouselContainer.querySelector(
+  "button.previous-button"
+);
+const nextButton = carouselContainer.querySelector("button.next-button");
 
 const images = [Cardinal, RainbowFlower, RedDahlia, Flycatcher].map(src => {
   const newImage = new Image();
@@ -57,10 +58,8 @@ const images = [Cardinal, RainbowFlower, RedDahlia, Flycatcher].map(src => {
   return newImage;
 });
 let currentImage = images[0] || null;
-
-//test:
 imageContainer.appendChild(currentImage);
-console.log(imageContainer);
+let currentImageIndex = 0;
 
 const updateGalleryIndex = function updateGalleryIndex(currentImageIndex) {
   // query select "index circles" (ICs)
@@ -69,26 +68,25 @@ const updateGalleryIndex = function updateGalleryIndex(currentImageIndex) {
   // otherwise, remove "highlight" class
 };
 
-const nextImage = function nextImage(currentImageIndex, images) {
-  // do things
-  // const nextImageIndex = currentImageIndex + 1;
-  // const nextImage = images[nextImageIndex]
-  // display nextImage
+const mod = (x, n) => ((x % n) + n) % n;
+
+const nextImage = function nextImage() {
+  // Todo: animate one out, animate new one in?
+  imageContainer.removeChild(currentImage);
+  currentImageIndex = mod(currentImageIndex + 1, images.length);
+  currentImage = images[currentImageIndex];
+  imageContainer.appendChild(currentImage);
   // unhighlight previous "index circle"; highlight next
   // or: "update gallery index"
-  return { currentImageIndex: currentImageIndex + 1, images };
 };
 
 const previousImage = function previousImage() {
-  // do things
+  imageContainer.removeChild(currentImage);
+  currentImageIndex = mod(currentImageIndex - 1, images.length);
+  currentImage = images[currentImageIndex];
+  imageContainer.appendChild(currentImage);
 };
 
-/* add event listener on "previous" and "next" buttons
-previousButton.addEventListener("click", function() {
-  previousImage(currentImageIndex, images)
-});
-nextButton.addEventListener("click", function() {
-  nextImage(currentImageIndex, images)
-});
-
-*/
+/* even listeners for "previous" and "next" buttons */
+previousButton.addEventListener("click", previousImage);
+nextButton.addEventListener("click", nextImage);
