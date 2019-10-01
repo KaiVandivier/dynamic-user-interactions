@@ -46,7 +46,9 @@ mobileMenuCloseButton.addEventListener("click", function() {
 
 const carouselContainer = document.getElementById("image-carousel");
 const imageContainer = carouselContainer.querySelector(".image-container");
-// const indexCircleContainer = carouselContainer.querySelector(".index-circle-container");
+const indexCircleContainer = carouselContainer.querySelector(
+  ".index-circle-container"
+);
 const previousButton = carouselContainer.querySelector(
   "button.previous-button"
 );
@@ -61,11 +63,29 @@ let currentImage = images[0] || null;
 imageContainer.appendChild(currentImage);
 let currentImageIndex = 0;
 
-const updateGalleryIndex = function updateGalleryIndex(currentImageIndex) {
-  // query select "index circles" (ICs)
-  // iterate through "ICs"
-  // if you find data-index === currentImageIndex, add "highlight" class
-  // otherwise, remove "highlight" class
+const goToImage = function goToImage() {
+  imageContainer.removeChild(currentImage);
+  currentImageIndex = Number(this.getAttribute("data-index"));
+  currentImage = images[currentImageIndex];
+  imageContainer.appendChild(currentImage);
+  drawIndexCircles();
+};
+
+const clearIndexCircles = function clearIndexCircles() {
+  while (indexCircleContainer.firstChild)
+    indexCircleContainer.removeChild(indexCircleContainer.firstChild);
+};
+
+const drawIndexCircles = function drawIndexCircles() {
+  clearIndexCircles();
+  for (let i = 0; i < images.length; i++) {
+    const newCircleDiv = document.createElement("div");
+    newCircleDiv.classList.add("circle");
+    newCircleDiv.setAttribute("data-index", i);
+    if (i == currentImageIndex) newCircleDiv.classList.add("highlighted");
+    indexCircleContainer.appendChild(newCircleDiv);
+    newCircleDiv.addEventListener("click", goToImage);
+  }
 };
 
 const mod = (x, n) => ((x % n) + n) % n;
@@ -76,8 +96,7 @@ const nextImage = function nextImage() {
   currentImageIndex = mod(currentImageIndex + 1, images.length);
   currentImage = images[currentImageIndex];
   imageContainer.appendChild(currentImage);
-  // unhighlight previous "index circle"; highlight next
-  // or: "update gallery index"
+  drawIndexCircles();
 };
 
 const previousImage = function previousImage() {
@@ -85,8 +104,13 @@ const previousImage = function previousImage() {
   currentImageIndex = mod(currentImageIndex - 1, images.length);
   currentImage = images[currentImageIndex];
   imageContainer.appendChild(currentImage);
+  drawIndexCircles();
 };
 
 /* even listeners for "previous" and "next" buttons */
 previousButton.addEventListener("click", previousImage);
 nextButton.addEventListener("click", nextImage);
+
+drawIndexCircles();
+
+let carouselInterval = window.setInterval(nextImage, 5000);

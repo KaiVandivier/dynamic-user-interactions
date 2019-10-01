@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  text-align: center;
 }
 
 .hidden {
@@ -26,6 +27,7 @@ h1 {
 }
 
 button {
+  cursor: pointer;
   background-color: white;
   color: black;
   border: 1px solid #eb4034;
@@ -41,7 +43,7 @@ button:active {
 
 /* Drop-down menu styles */
 #nav-menu.menu-container {
-  display: block;
+/*   display: ; */
   width: max-content;
 }
 
@@ -49,17 +51,14 @@ button:active {
   border: 1px solid #eb4034;
   border-radius: 1em;
   padding: .6em 2em;
-  margin: .2em 0;
   width: parent;
   text-align: center;
   line-height: 1.6em;
   z-index: 10;
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
-}
-
-#nav-menu .menu-items.hidden {
-  display: none;
 }
 
 
@@ -108,4 +107,29 @@ button:active {
   color: white;
   text-decoration: none;
   line-height: 1.6em;
+}
+
+/* Image carousel styles */
+.carousel-container .image-nav {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.carousel-container .image-nav .index-circle-container {
+  padding: 14px;
+}
+
+div.circle {
+  cursor: pointer;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  margin: 0 4px;
+  border: 4px solid grey;
+  border-radius: 18px;
+}
+
+div.circle.highlighted {
+  background-color: grey;
 }
